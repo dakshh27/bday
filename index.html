@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Happy 20th Birthday, Yashi! 🌸✨</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎀</text></svg>">
+
+  <!-- Google Fonts for Romantic & Aesthetic Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Sparkles & Hearts Background Canvas -->
+  <canvas id="ambientCanvas"></canvas>
+
+  <!-- Interactive Background Music Toggle -->
+  <div class="audio-control-container">
+    <button id="musicToggleBtn" class="music-toggle-btn" title="Toggle cute birthday melody">
+      <span class="music-icon">🎵</span>
+      <span class="music-label">Birthday Melody</span>
+      <div class="music-wave-bars">
+        <span></span><span></span><span></span>
+      </div>
+    </button>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 1. SECRET PASSWORD SCREEN (LOCK OVERLAY) -->
+  <!-- ========================================== -->
+  <div id="passwordOverlay" class="lock-overlay">
+    <div class="floating-petals-bg"></div>
+
+    <div class="lock-card glass-card">
+      <div class="ribbon-bow">🎀</div>
+      
+      <div class="lock-header">
+        <h1 class="lock-title">Hey Birthday Girl! 🎀</h1>
+        <p class="lock-subtitle">Someone has prepared a little surprise for you...</p>
+        <p class="lock-prompt">But first, you need to unlock it! 💗</p>
+      </div>
+
+      <div class="passcode-container">
+        <div class="passcode-inputs" id="passcodeInputs">
+          <input type="password" maxlength="1" inputmode="numeric" class="pin-digit" id="digit1" autocomplete="off" autofocus placeholder="•">
+          <input type="password" maxlength="1" inputmode="numeric" class="pin-digit" id="digit2" autocomplete="off" placeholder="•">
+        </div>
+        
+        <div class="password-hint">
+          <span class="sparkle-star">✨</span> Enter the 2-digit secret code <span class="sparkle-star">✨</span>
+        </div>
+
+        <div id="errorMessage" class="error-message">
+          <!-- Dynamically inserted playful error message -->
+        </div>
+
+        <button id="unlockBtn" class="cute-btn unlock-btn">
+          <span class="btn-text">Unlock Surprise 💗</span>
+          <span class="btn-sparkle">✨</span>
+        </button>
+
+        <p class="secret-clue">💡 <em>Hint: It's a special two-digit number (0...)</em></p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- MAIN SURPRISE CONTENT (HIDDEN TILL UNLOCKED) -->
+  <!-- ========================================== -->
+  <main id="mainSurpriseContent" class="surprise-content hidden">
+
+    <!-- FLOATING BALLOONS DECORATION (LEFT ONLY, NO EMOJIS) -->
+    <div class="balloon-cluster left-cluster">
+      <div class="balloon balloon-pink" style="--float-delay: 0s;"><span>2</span></div>
+      <div class="balloon balloon-gold" style="--float-delay: 1.5s;"><span>0</span></div>
+    </div>
+
+    <!-- 2. BIRTHDAY WELCOME SCREEN / HERO SECTION -->
+    <section class="hero-section" id="heroSection">
+      
+      <!-- CREATIVE 3-LINE ARTISTIC TITLE -->
+      <div class="creative-birthday-banner">
+        <span class="title-line-1">✨ HAPPIEST ✨</span>
+        <h1 class="title-line-2">BIRTHDAY</h1>
+        <div class="title-line-3">
+          <span class="title-name-script">Yashuu !!</span>
+          <span class="title-decor-emojis">🎂💗</span>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE 20TH BIRTHDAY CAKE -->
+      <div class="interactive-cake-container">
+        <div class="cake-instruction">
+          <span class="wand-icon">✨</span> Click the candles to blow them out & make a wish! <span class="wand-icon">✨</span>
+        </div>
+
+        <!-- SIMPLE 3-LAYER AESTHETIC BIRTHDAY CAKE -->
+        <div class="cake-wrapper simple-3tier-cake" id="birthdayCake" title="Click to blow out candles!">
+          <div class="simple-plate"></div>
+          
+          <!-- Layer 1: Bottom Tier -->
+          <div class="cake-tier simple-tier tier-1-bottom">
+            <div class="tier-frosting-line"></div>
+          </div>
+
+          <!-- Layer 2: Middle Tier -->
+          <div class="cake-tier simple-tier tier-2-middle">
+            <div class="tier-frosting-line"></div>
+          </div>
+
+          <!-- Layer 3: Top Tier -->
+          <div class="cake-tier simple-tier tier-3-top">
+            <div class="tier-frosting-line"></div>
+          </div>
+
+          <!-- Number 2 and 0 Golden Candles -->
+          <div class="candles-wrapper simple-candles-wrapper">
+            <div class="candle candle-2" id="candle1">
+              <div class="wick"></div>
+              <div class="flame" id="flame1"></div>
+              <div class="smoke" id="smoke1"></div>
+              <div class="candle-number">2</div>
+            </div>
+            <div class="candle candle-0" id="candle2">
+              <div class="wick"></div>
+              <div class="flame" id="flame2"></div>
+              <div class="smoke" id="smoke2"></div>
+              <div class="candle-number">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="wishBanner" class="wish-banner hidden">
+          <div class="wish-card">
+            <span class="sparkle-icon">🌟</span>
+            <p><strong>Your 20th birthday wish is sent to the stars!</strong> May every single dream of yours come true this decade, Yashuu! 💫</p>
+            <span class="sparkle-icon">🌟</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Scroll Cue -->
+      <a href="#surpriseSection" class="scroll-cue">
+        <span>Scroll down for your surprises</span>
+        <div class="scroll-arrow">↓</div>
+      </a>
+    </section>
+
+
+    <!-- 3. BIRTHDAY SURPRISE SECTION: HEARTFELT LETTER -->
+    <section class="surprise-section" id="surpriseSection">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">A Special Note For You</span>
+          <h2 class="section-title">20 Years of Pure Sunshine ☀️🌸</h2>
+          <p class="section-subtitle">A little reminder of how extraordinary and cherished you are</p>
+        </div>
+
+        <div class="heartfelt-card glass-card">
+          <div class="card-flower-decor top-left">🌸</div>
+          <div class="card-flower-decor bottom-right">✨</div>
+
+          <div class="letter-body">
+            <p class="letter-salutation">Dearest Yashu,</p>
+            
+            <p class="letter-paragraph">
+              <strong>Happiest birthdayyy girl! 🎂✨</strong> I hope your day is as beautiful as you are and you get everything you wish for. I just want you to always keep smiling and never let anything make you sad — you deserve all the happiness in this world, and I hope this year brings you lots of love, success, and unforgettable memories!
+            </p>
+
+            <p class="letter-paragraph">
+              I know I am not the best at writing these things, but still wanted to make you feel special today 😭
+            </p>
+
+            <div class="letter-quote">
+              “You are really an amazing person and I hope you never change the way you are. Stay the same crazy and cute person always, and enjoy your day to the fullesttt!”
+            </div>
+
+            <p class="letter-paragraph">
+              I hope we make lots of more memories together and have many more stupid and funny moments to laugh about. Never doubt yourself and always remember how special you are to the people around you!
+            </p>
+
+            <p class="letter-paragraph">
+              Keep shining and doing all the things that make you happy, and no matter what happens, always keep that beautiful smile on your face!
+            </p>
+
+            <p class="letter-paragraph letter-closing-wish">
+              Once again, happiest birthdayyy and lots of loveee 🫶🏻🌟
+            </p>
+
+            <div class="letter-signoff">
+              <span>With all my heart,</span>
+              <p class="signature">Forever & Always 💗</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- 4. INTERACTIVE SURPRISE ELEMENTS -->
+    <section class="interactive-section" id="interactiveSection">
+      <div class="container">
+
+        <!-- ANIMATED 3D ENVELOPE (SECRET LETTER) -->
+        <div class="envelope-module">
+          <div class="section-title-wrap">
+            <span class="section-tag">Surprise Keepsake</span>
+            <h2 class="section-title">An Unsent Secret Letter 💌</h2>
+            <p class="section-subtitle">Tap the wax seal to break the stamp and reveal what's inside</p>
+          </div>
+
+          <div class="envelope-container" id="envelopeContainer">
+            <div class="envelope" id="envelope">
+              <div class="envelope-flap" id="envelopeFlap"></div>
+              <div class="envelope-pocket"></div>
+              
+              <!-- Wax Seal Button -->
+              <div class="wax-seal" id="waxSeal" title="Click to open letter!">
+                <span>Y</span>
+                <div class="seal-ring"></div>
+              </div>
+
+              <!-- Sliding Letter Inside -->
+              <div class="letter-paper" id="letterPaper">
+                <div class="letter-paper-content">
+                  <div class="letter-paper-header">
+                    <span>🎀 For Yashuu</span>
+                    <span>Turning 20 🥂</span>
+                    <button class="expand-letter-icon-btn" id="expandLetterBtn" title="Read Full Screen">⛶</button>
+                  </div>
+                  <h4 class="letter-paper-title">A Little Promise For You</h4>
+                  <p class="letter-paper-salutation">Dearest Yashuu,</p>
+                  <p class="letter-paper-text">
+                    In your twenties, whenever things get overwhelming, remember to breathe. Take up space, laugh loudly, eat the dessert, buy the flowers, and never doubt the extraordinary magic that lives inside you.
+                  </p>
+                  <div class="letter-paper-callme">
+                    "You can always call me." 📞💗
+                  </div>
+                  <p class="letter-paper-footer">
+                    You are doing wonderfully. We are so proud of you. 🌸
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="envelope-hint-container">
+            <p class="envelope-hint" id="envelopeHint">Tap the wax seal "Y" to open 💌</p>
+            <button class="read-full-modal-btn hidden" id="readFullModalBtn">
+              <span>📖 Open Full Letter View</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Secret Letter Full Reader Modal -->
+        <div id="secretLetterModal" class="reveal-modal hidden">
+          <div class="modal-backdrop" id="letterModalBackdrop"></div>
+          <div class="modal-card secret-letter-modal-card glass-card">
+            <button class="close-modal-btn" id="closeLetterModalBtn" title="Close">✕</button>
+            <div class="modal-sparkles">🌸 💌 ✨</div>
+            <div class="modal-letter-content">
+              <div class="letter-paper-header">
+                <span>🎀 A Secret Note For Yashuu</span>
+                <span>Turning 20 🥂</span>
+              </div>
+              <h3 class="modal-letter-title">A Little Promise For You 💖</h3>
+              <p class="modal-letter-salutation">Dearest Yashuu,</p>
+              <p class="modal-letter-body">
+                In your twenties, whenever things get overwhelming, remember to breathe. Take up space, laugh loudly, eat the dessert, buy the flowers, and never doubt the extraordinary magic that lives inside you.
+              </p>
+              <div class="modal-letter-callme">
+                "You can always call me." 📞💗
+              </div>
+              <p class="modal-letter-footer">
+                You are doing wonderfully. We are so proud of you. 🌸
+              </p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- PINTEREST-INSPIRED POLAROID GALLERY (YASHUU'S 3 PHOTOS) -->
+        <div class="polaroid-gallery-module">
+          <div class="section-title-wrap">
+            <span class="section-tag">Memory Lane</span>
+            <h2 class="section-title">Snapshots of Sunshine 📸</h2>
+            <p class="section-subtitle">Aesthetic memories of a gorgeous girl (Tap cards to flip them!)</p>
+          </div>
+
+          <div class="polaroid-grid polaroid-grid-3">
+            
+            <!-- Polaroid 1: Birthday Sash -->
+            <div class="polaroid-card-wrap" data-card="1">
+              <div class="polaroid-card">
+                <div class="polaroid-front">
+                  <div class="washi-tape tape-pink"></div>
+                  <div class="photo-frame">
+                    <img src="images/yashi_birthday_queen.jpg" alt="Yashuu Birthday Queen" class="polaroid-img" loading="lazy">
+                  </div>
+                  <p class="polaroid-caption">The Birthday Queen 👑✨</p>
+                </div>
+                <div class="polaroid-back">
+                  <div class="back-note">
+                    <span class="note-quote">“</span>
+                    <p>Tujhe kabhi apni teenage life chhodni hi nahi chahiye thi but please badi hone ke baad bhi apna woh baccho vala nature aur pagalpan kabhi mat chhodna hamesha aisi hi rehna aur life ko enjoy karte rehna</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Polaroid 2: Warm Golden Hour -->
+            <div class="polaroid-card-wrap" data-card="2">
+              <div class="polaroid-card">
+                <div class="polaroid-front">
+                  <div class="washi-tape tape-gold"></div>
+                  <div class="photo-frame">
+                    <img src="images/yashi_golden_sunshine.jpg" alt="Yashuu Golden Sunshine" class="polaroid-img" loading="lazy">
+                  </div>
+                  <p class="polaroid-caption">Golden Hour Sunshine ☀️🌸</p>
+                </div>
+                <div class="polaroid-back">
+                  <div class="back-note">
+                    <span class="note-quote">“</span>
+                    <p>Is photo ke baare mein kuch nahi bolunga kyuki yaha aur log bhi dekh rahe hai baaki jo samajhna hai samajh jaa bas itna bolunga but matt kr lala matt krr</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Polaroid 3: Cake on Face Celebration -->
+            <div class="polaroid-card-wrap" data-card="3">
+              <div class="polaroid-card">
+                <div class="polaroid-front">
+                  <div class="washi-tape tape-rose"></div>
+                  <div class="photo-frame">
+                    <img src="images/yashi_cake_moment.jpg" alt="Yashuu Birthday Cake Moment" class="polaroid-img" loading="lazy">
+                  </div>
+                  <p class="polaroid-caption">The Sweetest Cake Bandit 🎂😋</p>
+                </div>
+                <div class="polaroid-back">
+                  <div class="back-note">
+                    <span class="note-quote">“</span>
+                    <p>Ye toh teri sabse cutest photo hai woh baccho wali harkatein aur cute sa expression but tu toh gawwar hai hattttt</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <!-- 20 THINGS WE ADORE ABOUT YASHUU -->
+        <div class="reasons-module">
+          <div class="section-title-wrap">
+            <span class="section-tag">Milestone Tribute</span>
+            <h2 class="section-title">20 Things We Love About Yashuu 💖</h2>
+            <p class="section-subtitle">Click each number card to reveal one of the 20 reasons!</p>
+          </div>
+
+          <div class="reasons-grid" id="reasonsGrid">
+            <!-- Dynamically populated 20 cards by JavaScript -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- MINIMAL AESTHETIC SIGN-OFF -->
+    <footer class="minimal-footer">
+      <div class="forever-signoff">07 · forever</div>
+      <div class="footer-divider-dot"></div>
+      <div class="footer-birthday-wish">
+        <span class="footer-wish-text">Happiest Birthday Yashuu</span>
+        <span class="footer-wish-icons">💌🌟</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Sound / Script -->
+  <script src="script.js"></script>
+</body>
+</html>
